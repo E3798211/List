@@ -1,0 +1,13 @@
+#ifndef ERRORS_H_INCLUDED
+#define ERRORS_H_INCLUDED
+
+enum Errors {
+    SUCCESS = 0,
+
+    FILE_NOT_OPENED,
+    LIST_OVERFLOW,
+    ELEMENT_DOES_NOT_EXIST,
+    ELEMENT_IS_EMPTY
+};
+
+#endif // ERRORS_H_INCLUDED

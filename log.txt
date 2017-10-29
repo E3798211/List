@@ -1,0 +1,39 @@
+txt_log successfuly opened in constructor
+img_log successfuly opened in constructor
+Constructor(): elements filled
+
+Calling AddElemAfter()
+Quiting AddElemAfter()
+
+Calling AddElemAfter()
+Quiting AddElemAfter()
+
+Calling AddElemAfter()
+Quiting AddElemAfter()
+
+Calling AddElemAfter()
+Quiting AddElemAfter()
+
+Calling AddElemAfter()
+Quiting AddElemAfter()
+
+Calling AddElemAfter()
+Quiting AddElemAfter()
+
+Calling AddElemAfter()
+Quiting AddElemAfter()
+
+Calling WriteDotImg()
+Quiting WriteDotImg()
+
+Calling CompileDotImg()
+Closing img_log in CompileDotImg():
+img_log closed in CompileDotImg()
+Command to execute in CompileDotImg(): "dot -Tps log.dot -o log.ps"
+Quiting CompileDotImg()
+
+Calling CallDumpImg()
+Command to execute in CallDumpImg(): "xdg-open log.ps"
+Opening img_log in CallDumpImg():
+img_log opened in CallDumpImg()
+Quiting CallDumpImg()
