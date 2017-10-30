@@ -110,7 +110,7 @@ int ArrList::AddElemAfter (int after_which, data_t data)
     if(after_which == tail)
         tail = new_elem_pos;
 
-    PrintVarriable(tail);
+    PrintListAttributes();
 
     PrintVarriable(after_which);
     PrintVarriable(elements[after_which].next);
@@ -124,7 +124,7 @@ int ArrList::AddElemAfter (int after_which, data_t data)
     PrintVarriable(elements[old_after_which_next].next);
     PrintVarriable(elements[old_after_which_next].prev);
 
-    DEBUG fprintf(stderr, "\x1b[32mAdded element:\nposition\t%d\nafter\t\t%d\nbefore\t\t%d\x1b[0m\n", new_elem_pos,
+    DEBUG fprintf(stderr, "\x1b[32mAdded element:\nposition\t%d\n next\t\t%d\n prev\t\t%d\x1b[0m\n", new_elem_pos,
                                                         elements[new_elem_pos].next, elements[new_elem_pos].prev);
 
     PrintLog("Quiting AddElemAfter()\n");
@@ -161,6 +161,8 @@ int ArrList::AddElemBefore(int before_which, data_t data)
     int new_free = elements[free].next;
     int new_elem_pos = free;
 
+    PrintListAttributes();
+
     elements[new_elem_pos].next = before_which;
     elements[new_elem_pos].prev = elements[before_which].prev;
     elements[new_elem_pos].data = data;
@@ -173,12 +175,30 @@ int ArrList::AddElemBefore(int before_which, data_t data)
 
     free = new_free;
 
-    DEBUG fprintf(stderr, "\x1b[32mElement added: position = %d\x1b[0m\n", new_elem_pos);
+    //DEBUG fprintf(stderr, "\x1b[32mElement added: position = %d\x1b[0m\n", new_elem_pos);
 
     //  ============================================
 
     if(before_which == head)
         head = new_elem_pos;
+
+    PrintVarriable(head);
+    PrintVarriable(tail);
+
+    PrintVarriable(before_which);
+    PrintVarriable(elements[before_which].next);
+    PrintVarriable(elements[before_which].prev);
+
+    PrintVarriable(new_elem_pos);
+    PrintVarriable(elements[new_elem_pos].next);
+    PrintVarriable(elements[new_elem_pos].prev);
+
+    PrintVarriable(old_before_which_prev);
+    PrintVarriable(elements[old_before_which_prev].next);
+    PrintVarriable(elements[old_before_which_prev].prev);
+
+    DEBUG fprintf(stderr, "\x1b[32mAdded element:\nposition\t%d\n next\t\t%d\n prev\t\t%d\x1b[0m\n", new_elem_pos,
+                                                        elements[new_elem_pos].next, elements[new_elem_pos].prev);
 
     PrintLog("Quiting AddElemBefore()\n");
     DEBUG fprintf(stderr, "Quiting AddElemBefore()\n");
@@ -225,12 +245,27 @@ int ArrList::DelElemAfter (int after_which)
 
     free = del_elem_pos;
 
-    DEBUG fprintf(stderr, "\x1b[32mElement deleted: position = %d\x1b[0m\n", del_elem_pos);
+    DEBUG fprintf(stderr, "\x1b[32mDeleted element:\nposition\t%d\n next\t\t%d\n prev\t\t%d\x1b[0m\n", del_elem_pos,
+                                                        elements[del_elem_pos].next, elements[del_elem_pos].prev);
 
     //  ============================================
 
     if(del_elem_pos == tail)
         tail = after_which;
+
+    PrintListAttributes();
+
+    PrintVarriable(after_which);
+    PrintVarriable(elements[after_which].next);
+    PrintVarriable(elements[after_which].prev);
+
+    PrintVarriable(del_elem_pos);
+    PrintVarriable(elements[del_elem_pos].next);
+    PrintVarriable(elements[del_elem_pos].prev);
+
+    PrintVarriable(del_next);
+    PrintVarriable(elements[del_next].next);
+    PrintVarriable(elements[del_next].prev);
 
     PrintLog("Quiting DelElemAfter()\n");
     DEBUG fprintf(stderr, "Quiting DelElemAfter()\n");
@@ -277,12 +312,27 @@ int ArrList::DelElemBefore(int before_which)
 
     free = del_elem_pos;
 
-    DEBUG fprintf(stderr, "\x1b[32mElement deleted: position = %d\x1b[0m\n", del_elem_pos);
-
     //  ============================================
 
     if(del_elem_pos == head)
         head = before_which;
+
+    PrintListAttributes();
+
+    PrintVarriable(before_which);
+    PrintVarriable(elements[before_which].next);
+    PrintVarriable(elements[before_which].prev);
+
+    PrintVarriable(del_elem_pos);
+    PrintVarriable(elements[del_elem_pos].next);
+    PrintVarriable(elements[del_elem_pos].prev);
+
+    PrintVarriable(del_prev);
+    PrintVarriable(elements[del_prev].next);
+    PrintVarriable(elements[del_prev].prev);
+
+    DEBUG fprintf(stderr, "\x1b[32mDeleted element:\nposition\t%d\n next\t\t%d\n prev\t\t%d\x1b[0m\n", del_elem_pos,
+                                                        elements[del_elem_pos].next, elements[del_elem_pos].prev);
 
     PrintLog("Quiting AddElemAfter()\n");
     DEBUG fprintf(stderr, "Quiting AddElemAfter()\n");
@@ -298,6 +348,15 @@ int ArrList::PrintLog(char* info)
     if(txt_log_status != FILE_NOT_OPENED)
         res = fprintf(txt_log, info);
     return res;
+}
+
+int ArrList::PrintListAttributes()
+{
+    PrintVarriable(head);
+    PrintVarriable(tail);
+    PrintVarriable(free);
+
+    return 3;
 }
 
 int ArrList::WriteDotImg(FILE* img_dot_source)

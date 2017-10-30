@@ -84,6 +84,7 @@ public:
 // =========================    // Dumps
 
     int PrintLog(char* info);
+    int PrintListAttributes();
 
     int WriteDotImg(FILE* img_dot_source);          // =====================================    FIX
 

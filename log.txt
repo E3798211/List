@@ -2,37 +2,49 @@ txt_log successfuly opened in constructor
 img_log successfuly opened in constructor
 Constructor(): elements filled
 
-Calling AddElemAfter()
+Calling AddElemBefore()
+Quiting AddElemBefore()
+
+Calling AddElemBefore()
+Quiting AddElemBefore()
+
+Calling AddElemBefore()
+Quiting AddElemBefore()
+
+Calling AddElemBefore()
+Quiting AddElemBefore()
+
+Calling AddElemBefore()
+Quiting AddElemBefore()
+
+Calling AddElemBefore()
+Quiting AddElemBefore()
+
+Calling AddElemBefore()
+Quiting AddElemBefore()
+
+Calling AddElemBefore()
+Quiting AddElemBefore()
+
+Calling AddElemBefore()
+Quiting AddElemBefore()
+
+Calling AddElemBefore()
+Quiting AddElemBefore()
+
+Calling DelElemBefore()
 Quiting AddElemAfter()
 
-Calling AddElemAfter()
+Calling DelElemBefore()
 Quiting AddElemAfter()
 
-Calling AddElemAfter()
+Calling DelElemBefore()
 Quiting AddElemAfter()
 
-Calling AddElemAfter()
+Calling DelElemBefore()
 Quiting AddElemAfter()
 
-Calling AddElemAfter()
-Quiting AddElemAfter()
-
-Calling AddElemAfter()
-Quiting AddElemAfter()
-
-Calling AddElemAfter()
-Quiting AddElemAfter()
-
-Calling AddElemAfter()
-Quiting AddElemAfter()
-
-Calling AddElemAfter()
-Quiting AddElemAfter()
-
-Calling AddElemAfter()
-Quiting AddElemAfter()
-
-Calling AddElemAfter()
+Calling DelElemBefore()
 Quiting AddElemAfter()
 
 Calling WriteDotImg()
