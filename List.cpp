@@ -303,11 +303,16 @@ int ArrList::WriteDotImg(FILE* img_dot_source)
     fprintf(img_dot_source, BEGIN);
     fprintf(img_dot_source, SET_RECORD_SHAPE);
 
-
+    // Filling info about elements
     int i = head;
     while(i != tail){
         fprintf(img_dot_source, "%d", i);
+
         fprintf(img_dot_source, BEGIN_DECLARATION);
+        fprintf(img_dot_source, LABELS);
+        fprintf(img_dot_source, NEXT_FIELD);
+
+        fprintf(img_dot_source, BEGIN_COLUMN);
         fprintf(img_dot_source, "%d", i);
         fprintf(img_dot_source, NEXT_FIELD);
         fprintf(img_dot_source, "%d", elements[i].data);
@@ -315,12 +320,19 @@ int ArrList::WriteDotImg(FILE* img_dot_source)
         fprintf(img_dot_source, "%d", elements[i].next);
         fprintf(img_dot_source, NEXT_FIELD);
         fprintf(img_dot_source, "%d", elements[i].prev);
+        fprintf(img_dot_source, END_COLUMN);
+
         fprintf(img_dot_source, END_DECLARATION);
 
         i = elements[i].next;
     }
     fprintf(img_dot_source, "%d", i);
+
     fprintf(img_dot_source, BEGIN_DECLARATION);
+    fprintf(img_dot_source, LABELS);
+    fprintf(img_dot_source, NEXT_FIELD);
+
+    fprintf(img_dot_source, BEGIN_COLUMN);
     fprintf(img_dot_source, "%d", i);
     fprintf(img_dot_source, NEXT_FIELD);
     fprintf(img_dot_source, "%d", elements[i].data);
@@ -328,9 +340,11 @@ int ArrList::WriteDotImg(FILE* img_dot_source)
     fprintf(img_dot_source, "%d", elements[i].next);
     fprintf(img_dot_source, NEXT_FIELD);
     fprintf(img_dot_source, "%d", elements[i].prev);
+    fprintf(img_dot_source, END_COLUMN);
+
     fprintf(img_dot_source, END_DECLARATION);
 
-
+    // Setting connections
     i = head;
     while(i != tail){
         int next = elements[i].next;
@@ -346,7 +360,6 @@ int ArrList::WriteDotImg(FILE* img_dot_source)
             fprintf(img_dot_source, BACK_DIRECTION);
         else
             fprintf(img_dot_source, WRONG_DIRECTION);
-        //fprintf(img_dot_source, BACK_DIRECTION);
 
         i = elements[i].next;
     }
