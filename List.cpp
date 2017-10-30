@@ -90,10 +90,11 @@ int ArrList::AddElemAfter (int after_which, data_t data)
     printf("new free = %d\n", new_free);
 
     // !!!!!
-    if(after_which == tail)
-        elements[new_elem_pos].next = elements[elements[after_which].next].next;
-    else
+    if(after_which != tail)
         elements[new_elem_pos].next = elements[after_which].next;
+    else{
+        elements[new_elem_pos].next = elements[free].next;
+    }
     // !!!!!
 
     elements[new_elem_pos].prev = after_which;
@@ -306,22 +307,22 @@ int ArrList::WriteDotImg(FILE* img_dot_source)
     int i = head;
     while(i != tail){
         fprintf(img_dot_source, "%d", i);
-        fprintf(stderr, "i = %d\n", i);
         fprintf(img_dot_source, BEGIN_DECLARATION);
+        fprintf(img_dot_source, "%d", i);
+        fprintf(img_dot_source, NEXT_FIELD);
         fprintf(img_dot_source, "%d", elements[i].data);
-        fprintf(stderr, "data = %d\n", elements[i].data);
         fprintf(img_dot_source, NEXT_FIELD);
         fprintf(img_dot_source, "%d", elements[i].next);
-        fprintf(stderr, "next = %d\n", elements[i].next);
         fprintf(img_dot_source, NEXT_FIELD);
         fprintf(img_dot_source, "%d", elements[i].prev);
-        fprintf(stderr, "prev = %d\n", elements[i].prev);
         fprintf(img_dot_source, END_DECLARATION);
 
         i = elements[i].next;
     }
     fprintf(img_dot_source, "%d", i);
     fprintf(img_dot_source, BEGIN_DECLARATION);
+    fprintf(img_dot_source, "%d", i);
+    fprintf(img_dot_source, NEXT_FIELD);
     fprintf(img_dot_source, "%d", elements[i].data);
     fprintf(img_dot_source, NEXT_FIELD);
     fprintf(img_dot_source, "%d", elements[i].next);
@@ -340,8 +341,12 @@ int ArrList::WriteDotImg(FILE* img_dot_source)
 
         fprintf(img_dot_source, "%d", next);
         fprintf(img_dot_source, TO);
-        fprintf(img_dot_source, "%d", i);
-        fprintf(img_dot_source, BACK_DIRECTION);
+        fprintf(img_dot_source, "%d", elements[next].prev);
+        if(elements[next].prev == i)
+            fprintf(img_dot_source, BACK_DIRECTION);
+        else
+            fprintf(img_dot_source, WRONG_DIRECTION);
+        //fprintf(img_dot_source, BACK_DIRECTION);
 
         i = elements[i].next;
     }

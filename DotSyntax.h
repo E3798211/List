@@ -17,7 +17,8 @@ const char   END_DECLARATION[]  = "\"];\n";
 const char        NEXT_FIELD[]  = " | ";
 
 const char FORWARD_DIRECTION[]  = " [color = green];\n";
-const char    BACK_DIRECTION[]  = " [color = yellow];\n";
+const char    BACK_DIRECTION[]  = " [color = blue];\n";
+const char   WRONG_DIRECTION[]  = " [color = red];\n";
 
 const char                TO[]  = " -> ";
 

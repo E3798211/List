@@ -67,7 +67,7 @@ public:
 
     int AddElemAfter (int after_which, data_t data);    //  FFIIXX!!!!!!!!!!!!
     int AddElemBefore(int before_which, data_t data);   //  AND CHECK OTHER!!!!!!!!!!
-    int DelElemAfter (int after_which);
+    int DelElemAfter (int after_which);                 //  WHAT IF TAIL OF HEAD!?
     int DelElemBefore(int before_which);
 
 // =========================    // Dumps
