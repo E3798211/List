@@ -61,7 +61,7 @@ ArrList::ArrList()
 int ArrList::AddElemAfter (int after_which, data_t data)
 {
     PrintLog("\nCalling AddElemAfter()\n");
-    DEBUG fprintf(stderr, "\nCalling AddElemAfter():\nafter_which = %d\n", after_which);
+    DEBUG fprintf(stderr, "\nCalling AddElemAfter()\n", after_which);
 
     assert(after_which > 0);
     assert(after_which < MAX_ELEMENTS);
@@ -83,19 +83,14 @@ int ArrList::AddElemAfter (int after_which, data_t data)
 
     //  ============================================
 
-    printf("elements[after_which].next = %d\n", elements[after_which].next);
-
     int new_free = elements[free].next;
     int new_elem_pos = free;
-    printf("new free = %d\n", new_free);
 
-    // !!!!!
+    PrintVarriable(free);
+    PrintVarriable(new_free);
+
     if(after_which != tail)
         elements[new_elem_pos].next = elements[after_which].next;
-    else{
-        elements[new_elem_pos].next = elements[free].next;
-    }
-    // !!!!!
 
     elements[new_elem_pos].prev = after_which;
     elements[new_elem_pos].data = data;
@@ -103,22 +98,34 @@ int ArrList::AddElemAfter (int after_which, data_t data)
     // Remembering pointer to last elem in this trio
     int old_after_which_next = elements[after_which].next;
 
-    //elements[after_which].next = /*new_elem_pos*/free;
-    elements[old_after_which_next].prev = new_elem_pos;
+    if(after_which != tail)
+        elements[old_after_which_next].prev = new_elem_pos;
 
-    printf("and after: elements[after_which].next = %d\n", elements[after_which].next);
     free = new_free;
 
-    DEBUG fprintf(stderr, "\x1b[32mElement added: position = %d\x1b[0m\n", new_elem_pos);
-    printf("new elem: elements[%d].prev = %d\n", new_elem_pos, elements[new_elem_pos].prev);
-    printf("old elem: elements[%d].prev = %d\n", old_after_which_next, elements[old_after_which_next].prev);
+    elements[after_which].next = new_elem_pos;
 
     //  ============================================
 
     if(after_which == tail)
         tail = new_elem_pos;
-    printf("tail = %d\n", tail);
 
+    PrintVarriable(tail);
+
+    PrintVarriable(after_which);
+    PrintVarriable(elements[after_which].next);
+    PrintVarriable(elements[after_which].prev);
+
+    PrintVarriable(new_elem_pos);
+    PrintVarriable(elements[new_elem_pos].next);
+    PrintVarriable(elements[new_elem_pos].prev);
+
+    PrintVarriable(old_after_which_next);
+    PrintVarriable(elements[old_after_which_next].next);
+    PrintVarriable(elements[old_after_which_next].prev);
+
+    DEBUG fprintf(stderr, "\x1b[32mAdded element:\nposition\t%d\nafter\t\t%d\nbefore\t\t%d\x1b[0m\n", new_elem_pos,
+                                                        elements[new_elem_pos].next, elements[new_elem_pos].prev);
 
     PrintLog("Quiting AddElemAfter()\n");
     DEBUG fprintf(stderr, "Quiting AddElemAfter()\n");
@@ -324,6 +331,9 @@ int ArrList::WriteDotImg(FILE* img_dot_source)
 
         fprintf(img_dot_source, END_DECLARATION);
 
+        PrintVarriable(i);
+        PrintVarriable(elements[i].next);
+
         i = elements[i].next;
     }
     fprintf(img_dot_source, "%d", i);
@@ -344,10 +354,13 @@ int ArrList::WriteDotImg(FILE* img_dot_source)
 
     fprintf(img_dot_source, END_DECLARATION);
 
+    PrintVarriable(i);
+
     // Setting connections
     i = head;
     while(i != tail){
         int next = elements[i].next;
+
         fprintf(img_dot_source, "%d", i);
         fprintf(img_dot_source, TO);
         fprintf(img_dot_source, "%d", next);

@@ -21,8 +21,9 @@ int main()
     a.AddElemBefore(a.head, 6);
     a.AddElemBefore(a.head, 7);
     */
-    for(int i = 0; i < 50; i++)
+    for(int i = 0; i < 10; i++)
         a.AddElemAfter(a.tail, 1);
+    a.AddElemAfter(4, 2);
 
     //a.elements[2].prev = 7;
     //a.DelElemAfter(1);

@@ -20,6 +20,17 @@
     #define DEBUG if(0)
 #endif // defined
 
+// =====================================================    //  Supporting defines
+
+/// Prints name and value of an integer
+#define PrintVarriable( var )                   \
+    do{                                         \
+        DEBUG fprintf(stderr, "\x1b[33m");      \
+        DEBUG fprintf(stderr, #var);            \
+        DEBUG fprintf(stderr, " = %d\n", var);  \
+        DEBUG fprintf(stderr, "\x1b[0m");       \
+    }while(0)                                   \
+
 // =====================================================    //  Global constants
 
 const char TXT_LOG_NAME[]        = "log.txt";   // Writing text debug
