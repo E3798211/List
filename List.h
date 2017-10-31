@@ -28,7 +28,7 @@
 // =====================================================    //  Debug modes
 //
 // Comment next line if you want to remove debug
-#define _DEBUG
+//#define _DEBUG
 #if defined (_DEBUG)
     #define DEBUG
 #else
@@ -36,11 +36,27 @@
 #endif // defined
 
 // Comment next line if you want to remove debug print in assert
-#define _VER
+//#define _VER
 #if defined (_VER)
     #define VER_PRINT
 #else
     #define VER_PRINT if(0)
+#endif // defined
+
+// Comment next line if you want to remove SUPER-debug
+//#define _SUPER_DEBUG
+#if defined (_SUPER_DEBUG)
+    #define SUPER_DEBUG
+#else
+    #define SUPER_DEBUG if(0)
+#endif // defined
+
+// Comment next line if you want to remove LOG_WRITE
+//#define _LOG_WRITE
+#if defined (_LOG_WRITE)
+    #define LOG_WRITE
+#else
+    #define LOG_WRITE if(0)
 #endif // defined
 
 // =====================================================    //  Supporting defines
@@ -63,10 +79,12 @@ const char IMG_LOG_RESULT_NAME[] = "log.ps";    // Creating image with this name
 /// Max amount of elements in the list
 const int MAX_ELEMENTS = 100;
 
-typedef int data_t;
+//typedef int data_t;
+typedef char data_t;
+
 
 /// Value of data in an empty element
-const data_t NULL_ELEM = -123456;
+const data_t NULL_ELEM[] = "NuLl";
 
 /// Value of pointer in NULL element
 const int     NULL_PTR = 0;
@@ -77,7 +95,7 @@ const int       NO_PTR = -1;
 // =====================================================    //  Class definition
 
 struct ArrListElem {
-    data_t data = NULL_ELEM;
+    data_t data[100];// = NULL_ELEM;
     int next    = 0;
     int prev    = 0;
 };
@@ -151,7 +169,8 @@ public:
         \param [in] after_which "Pointer" to the element to be after the new element
         \param [in] data        Data to be placed in the new element
     */
-    int AddElemAfter (int after_which, data_t data);
+//    int AddElemAfter (int after_which, data_t data);
+    int AddElemAfter (int after_which, data_t data[]);
 
     /// Adds element before given one
     /**
@@ -160,7 +179,8 @@ public:
         \param [in] before_which    "Pointer" to the element to be before the new element
         \param [in] data            Data to be placed in the new element
     */
-    int AddElemBefore(int before_which, data_t data);
+//    int AddElemBefore(int before_which, data_t data);
+    int AddElemBefore(int before_which, data_t data[]);
 
     /// Adds element after given one
     /**
@@ -183,7 +203,8 @@ public:
         \param [in] elem_pos    "Pointer" to the element
         \param [in] data        Data to be set
     */
-    int SetData(int elem_pos, data_t data);
+//    int SetData(int elem_pos, data_t data);
+    int SetData(int elem_pos, data_t data[]);
 
     /// Gets data from element
     /**
@@ -194,7 +215,11 @@ public:
         \param [in] elem_pos    "Pointer" to the element we want to explore
         \param [in] elem_data   Address of the varriable where we want to get data
     */
-    int GetElemData(int elem_pos, data_t* elem_data);
+//    int GetElemData(int elem_pos, data_t* elem_data);
+    int GetElemData(int elem_pos, data_t* elem_data[]);
+
+    /// Returns pointer to the next element
+    int GetNext(int elem_pos);
 
     /// Returns head
     int GetHead();
